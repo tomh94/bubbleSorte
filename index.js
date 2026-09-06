@@ -5,10 +5,11 @@ function handleButtonClick()
 {
     let userInputValue = document.getElementById("input");
     let output = document.getElementById("output");
-    let sortedArray = BubbleSort(userInputValue.value.split(',')
-    .map(s => s.trim())
-    .filter(s => s !== '')
-    .map(Number));
+
+    output.innerHTML = BubbleSort(userInputValue.value.split(',')
+        .map(s => s.trim())
+        .filter(s => s !== '')
+        .map(Number));
 }
 
 function BubbleSort(a)
@@ -27,9 +28,4 @@ function BubbleSort(a)
     }
     return a;
 }
-let array = [66,76,67,65,2,3];
-BubbleSort(array);
-console.log("sorted")
-console.log(array);
-
 
