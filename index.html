@@ -9,16 +9,19 @@
 <body>
 
 <label>
-    <input type="text" id="input"/>
+    <input type="text" id="input" placeholder="535,3243,4,34,3"/>
 </label>
+<button id="load" onclick="handleLoadClick()">Načíst pole</button>
 
-<button id = "button" onclick="handleButtonClick()">
-    Seřazení
-</button>
+<div id="grid" class="grid"></div>
 
-<p id = "output">
+<p id="status"></p>
 
-</p>
+<div class="controls">
+    <button id="step" onclick="step()">Krok</button>
+    <button id="run" onclick="handleRunClick()">Spustit celé</button>
+    <button id="reset" onclick="handleResetClick()">Reset</button>
+</div>
 
 </body>
 
