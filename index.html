@@ -1,28 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Bubble sort</title>
+    <title>Bubble sort - interaktivní výuka</title>
     <link rel="stylesheet" href="style.css">
     <script src="index.js"></script>
 </head>
 <body>
 
-<label>
-    <input type="text" id="input" placeholder="535,3243,4,34,3"/>
-</label>
-<button id="load" onclick="handleLoadClick()">Načíst pole</button>
+<main class="page">
 
-<div id="grid" class="grid"></div>
+    <header class="intro">
+        <h1>Bubble sort</h1>
+        <p>
+            Bubble sort porovnává vždy dvojici sousedních prvků a prohodí je, pokud jsou
+            v nesprávném pořadí. Po každém průchodu polem se tak na svém konečném místě usadí další
+            (největší dosud neseřazený) prvek.
+        </p>
+    </header>
 
-<p id="status"></p>
+    <section class="legend" aria-label="Legenda barev">
+        <span class="legend-item"><span class="swatch comparing"></span>porovnávají se</span>
+        <span class="legend-item"><span class="swatch swapping"></span>prohazují se</span>
+        <span class="legend-item"><span class="swatch sorted"></span>na svém místě</span>
+    </section>
 
-<div class="controls">
-    <button id="step" onclick="step()">Krok</button>
-    <button id="run" onclick="handleRunClick()">Spustit celé</button>
-    <button id="reset" onclick="handleResetClick()">Reset</button>
-</div>
+    <section class="pseudocode-box">
+        <pre class="pseudocode"><code
+><span class="pc-line" id="pc-outer">pro i = 0 ... n-2</span>
+<span class="pc-line" id="pc-inner">  pro j = 0 ... n-i-2</span>
+<span class="pc-line" id="pc-if">    pokud a[j] &gt; a[j+1]</span>
+<span class="pc-line" id="pc-swap">      prohoď a[j] a a[j+1]</span></code></pre>
+        <p id="indices" class="indices">i = –    j = –</p>
+    </section>
+
+    <section class="load-row">
+        <label>
+            <input type="text" id="input" placeholder="535,3243,4,34,3" value="5,35,324,4,34,3"/>
+        </label>
+        <button id="load" onclick="handleLoadClick()">Načíst pole</button>
+    </section>
+
+    <section class="visualization">
+        <div id="grid" class="grid"></div>
+        <div id="indexLabels" class="index-labels"></div>
+    </section>
+
+    <p id="status" class="status"></p>
+
+    <div class="progress">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <section class="stats">
+        <span>Porovnání: <strong id="statCompare">0</strong></span>
+        <span>Prohození: <strong id="statSwap">0</strong></span>
+    </section>
+
+    <section class="controls">
+        <button id="step" onclick="step()" disabled>Krok</button>
+        <button id="run" onclick="handleRunClick()" disabled>Spustit celé</button>
+        <button id="reset" onclick="handleResetClick()" disabled>Reset</button>
+
+        <label class="speed-control">
+            Rychlost:
+            <input type="range" id="speed" min="200" max="1500" step="100" value="600" oninput="handleSpeedChange()">
+            <span id="speedLabel">600 ms</span>
+        </label>
+    </section>
+
+</main>
 
 </body>
-
 </html>

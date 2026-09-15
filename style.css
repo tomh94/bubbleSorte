@@ -3,12 +3,32 @@ body {
     background-color: #f4f5f7;
     color: #222;
     display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 32px 16px 64px;
+}
+
+.page {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    gap: 18px;
+    max-width: 640px;
+    width: 100%;
+}
+
+.intro {
+    text-align: center;
+}
+
+.intro h1 {
+    margin: 0 0 8px;
+}
+
+.intro p {
     margin: 0;
-    gap: 12px;
+    line-height: 1.5;
+    color: #444;
 }
 
 input {
@@ -27,10 +47,107 @@ button {
     background-color: #2563eb;
     color: white;
     cursor: pointer;
+    transition: background-color 0.2s;
 }
 
-button:hover {
+button:hover:not(:disabled) {
     background-color: #1d4ed8;
+}
+
+button:disabled {
+    background-color: #cbd5e1;
+    cursor: not-allowed;
+}
+
+.load-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* legend */
+
+.legend {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    border: 2px solid transparent;
+}
+
+.swatch.comparing {
+    border-color: #f59e0b;
+    background-color: #fef3c7;
+}
+
+.swatch.swapping {
+    border-color: #ef4444;
+    background-color: #fecaca;
+}
+
+.swatch.sorted {
+    border-color: #22c55e;
+    background-color: #dcfce7;
+}
+
+/* pseudocode */
+
+.pseudocode-box {
+    background-color: #1e293b;
+    color: #e2e8f0;
+    border-radius: 10px;
+    padding: 14px 18px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pseudocode {
+    margin: 0;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.pc-line {
+    display: block;
+    padding: 1px 6px;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.pc-line.active {
+    background-color: #f59e0b;
+    color: #1e293b;
+    font-weight: 700;
+}
+
+.indices {
+    margin: 8px 0 0;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+/* grid */
+
+.visualization {
+    width: 100%;
 }
 
 .grid {
@@ -39,6 +156,23 @@ button:hover {
     flex-wrap: wrap;
     justify-content: center;
     min-height: 56px;
+}
+
+.index-labels {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 4px;
+}
+
+.index-label {
+    min-width: 40px;
+    padding: 0 8px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #94a3b8;
 }
 
 .cell {
@@ -58,6 +192,7 @@ button:hover {
 .cell.comparing {
     border-color: #f59e0b;
     background-color: #fef3c7;
+    animation: pulse 0.4s ease;
 }
 
 .cell.swapping {
@@ -68,15 +203,68 @@ button:hover {
 .cell.sorted {
     border-color: #22c55e;
     background-color: #dcfce7;
+    animation: popIn 0.35s ease;
 }
 
-#status {
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+}
+
+@keyframes popIn {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* status + progress */
+
+.status {
     font-size: 1.1rem;
     font-weight: 600;
     min-height: 1.4em;
+    text-align: center;
+    margin: 0;
 }
+
+.progress {
+    width: 100%;
+    height: 8px;
+    background-color: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    background-color: #2563eb;
+    transition: width 0.2s ease;
+}
+
+/* stats */
+
+.stats {
+    display: flex;
+    gap: 24px;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+/* controls */
 
 .controls {
     display: flex;
     gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.speed-control {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    color: #444;
 }
